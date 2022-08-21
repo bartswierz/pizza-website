@@ -8,16 +8,74 @@ min-width: sm: 576 (x > 576px && x < 768px)
   box-sizing: border-box;
 }
 
+body {
+  /* font-family: "Fira Sans", sans-serif; */
+  font-family: "Passion One", cursive;
+  /* PATH to our image within the img folder */
+  /* background-image: url("./img/background-img1.jpg"); */
+
+  /* background-image: linear-gradient(
+      to top left,
+      rgba(245, 246, 252, 0.52),
+      rgba(117, 19, 19, 0.73)
+    ),
+    url("./img/background-img1.jpg"); */
+
+  background-image: linear-gradient(
+      to top left,
+      rgba(117, 19, 19, 0.63),
+      rgba(117, 19, 19, 0.63)
+    ),
+    url("./img/background-img1.jpg");
+
+  /* background-repeat: no-repeat; */
+  /* This keeps our image fixed when we scroll down */
+  background-attachment: fixed;
+  /* Entire image is displayed as our background */
+  background-size: cover;
+}
+
 html {
   /* This makes 1rem = 10px */
   font-size: 62.5%;
 }
 
+/* Will display brickwall as our background */
+.background-image {
+  /* background-image: url("./img/background-img1.jpg"); */
+
+  /* Covers entire container */
+  /* background-size: fixed; */
+  /* Displays 100% of view height and view width of current screen size */
+  width: 100vw;
+  height: 100vh;
+  z-index: -9999;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-color {
+  /* border-bottom: red; */
+  /* background-color: yellow; */
+  /* border-bottom: 5px solid #dc3545; */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 /* Edits to return navbar size back to normal(due to changing html font-size 62.5% */
 .nav-item,
 .navbar-brand,
+.nav-link,
+.active,
+.home-link,
 .cart {
+  color: white;
   font-size: 2.6rem;
+  /* Makes the navbar fixed on our screen */
+  background: fixed;
 }
 
 .cart {
@@ -32,18 +90,15 @@ html {
 .dropdown-item:hover {
   border-left: 4px solid #dc3545;
   background-color: white;
-  /* background-color: yellow; */
 }
 
 .dropdown-item:active {
   background-color: #dc3545;
 }
 
-.dropdown-item:link {
-  /* background-color: yellow; */
-}
 /* Helps prevent content overflow by not allowing container to shrink more than this */
 .container {
+  margin-top: 5rem;
   min-width: 32rem;
   min-height: 40rem;
 }
@@ -51,7 +106,7 @@ html {
 .item-container {
   display: grid;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
-  /* background-color: rgba(223, 222, 222, 0.174); */
+  background-color: rgba(223, 222, 222, 0.874);
   border: 5px solid rgba(223, 222, 222, 0.174);
   gap: 2rem;
   grid-template-columns: 6fr 4fr;
@@ -79,10 +134,8 @@ html {
   height: 14rem;
   border-radius: 50%;
   border: 5px solid #dc3545;
-  /* transform: scale(1.1); */
   max-width: 14rem;
   min-width: 14rem;
-  /* overflow: hidden; */
 }
 
 /* Increase image size on mouse hover */
