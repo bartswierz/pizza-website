@@ -23,6 +23,8 @@ html {
   grid-template-columns: 6fr 4fr;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 8%;
+  /* Space between our items */
+  margin: 0rem 0rem 4rem 0rem;
 
   /* To prevent container content breaking on smaller widths */
   min-width: 40rem;
@@ -46,39 +48,37 @@ html {
   padding: 2rem 0rem 0rem 1rem;
 }
 
-.col {
-  /* border: 2px solid black; */
-  /* border-radius: 5%; */
-}
 .item-header {
-  font-size: 1.8rem;
+  font-size: 2.8rem;
 }
 
 .item-price {
-  font-size: 1.6rem;
+  font-size: 2.4rem;
 }
 
 .item-calories {
-  padding-top: 1rem;
-  font-size: 1rem;
-  text-align: start;
+  padding-top: 2rem;
+  font-size: 1.2rem;
+  color: grey;
 }
 
 .select-crust {
-  font-size: 1rem;
   margin-bottom: 1rem;
+  font-size: 1.6rem;
 }
 .select-size {
   margin-bottom: 1rem;
+  font-size: 1.6rem;
 }
 .select-quantity {
   margin-bottom: 1rem;
+  font-size: 1.6rem;
 }
 
 .btn-order {
   padding: 0.7rem 6.6rem 0.7rem 6.6rem;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 1.6rem;
 }
 /* 
 min-width lg: 992 - if above
