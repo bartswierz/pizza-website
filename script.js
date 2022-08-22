@@ -8,6 +8,8 @@ Add the above code to all click events to PREVENT FORM SUBMISSION, This will all
 //TODO: add pricing logic in btnPepperoni when user clicks 'add to Order' =>
 //  if small -> price = 12.99 & total = quantity * price =>
 // => order.orders.push([crust, size, quantity, price, total])
+//TODO: Refactor If conditional statement in btnPepperoni, move logic into a function and return true or false
+//TODO: Change HTML 'starting at $12.99' to show the correct price
 
 // To select an ID, USE '#' =>
 //querySelector('#idname)
@@ -15,45 +17,86 @@ Add the above code to all click events to PREVENT FORM SUBMISSION, This will all
 //querySelector('.className')
 // Use querySelectorAll() to grab all form input box information
 
+// Misc Variables
+let price = 0;
+let totalPrice = 0;
+// Variables are for helper function: isValidOrder
+const defaultCrust = "Select Crust";
+const defaultSize = "Select Size";
+const defaultQuantity = "Quantity";
+const empty = "";
+
+// let pizzaPrice = [12.99, 15.99, 18.99];
+
+// PIZZA FORMS
+const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
+
 // PIZZA BUTTONS
 const btnPepperoniPizza = document.querySelector(".form__btn--pepperoni-pizza");
 
-const pizzaPrice = 12.99; //starting price
-const order = {
-  orders: [],
+const orders = {
+  // Will hold our: crust, size, quantity, price, totalPrice
+  currentPizzaOrders: [],
+  // price: 0,
+  // totalPrice: 0
 };
 
-const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
+// HELPER FUNCTIONS
+// Calculates pizza price based on chosen Pizza Size
+const calcPrice = function (
+  userSize,
+  [priceOfSmall, priceOfMedium, priceOfLarge]
+) {
+  if (userSize === "small") return (price = priceOfSmall);
+  else if (userSize === "medium") return (price = priceOfMedium);
+  else if (userSize === "large") return (price = priceOfLarge);
+  else return;
+};
+
+// Calculates total price
+const calcTotalPrice = function (price, userQuantity) {
+  return price * userQuantity;
+};
+
+// Checks if user chose a crust, size, and quantity
+const isOrderValid = function (userCrust, userSize, userQuantity, empty = "") {
+  if (
+    userCrust !== defaultCrust &&
+    userCrust !== empty &&
+    userSize !== defaultSize &&
+    userSize !== empty &&
+    userQuantity !== defaultQuantity &&
+    userQuantity !== empty
+  )
+    return true;
+  else return false;
+};
 
 // Customer added 'Pepperoni Pizza' to their order
 btnPepperoniPizza.addEventListener("click", function (event) {
   // PREVENTS FORM SUBMISSION
   event.preventDefault();
 
-  // Holds userChoice to be pushed into order Object
-  const userChoice = []; //to hold our three items
+  let userChoice = []; //Will hold our five items
   const userCrust = pepperoniPizzaForm.pepperoni_crust.value;
   const userSize = pepperoniPizzaForm.pepperoni_size.value;
   const userQuantity = pepperoniPizzaForm.pepperoni_quantity.value;
 
-  // To compare to user choice, helps prevent user from submitting incomplete order
-  const defaultCrust = "Select Crust";
-  const defaultSize = "Select Size";
-  const defaultQuantity = "Quantity";
-
-  if (
-    userCrust != defaultCrust &&
-    userSize != defaultSize &&
-    userQuantity != defaultQuantity
-  ) {
+  // Checking if user input is correct BEFORE adding order to our order object
+  if (isOrderValid(userCrust, userSize, userQuantity, "")) {
     console.log(
-      `SUCCESS! Crust: ${userCrust}, Size: ${userSize}, Quantity: ${userQuantity}`
+      `SUCCESS! Pepperoni Pizza: ${userQuantity}, ${userSize}, ${userCrust} pizza(s) `
     );
-    // console.log(`userCrust = ${userCrust}`);
-    // console.log(`userSize = ${userQuantity}`);
-    // console.log(`userQuantity = ${userQuantity}`);
-    // console.log(
-    //   `You have ordered ${userQuantity} ${userSize} ${userCrust} pizzas!`
-    // );
-  }
+    // Calculates price of item and total price
+    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    totalPrice = calcTotalPrice(price, userQuantity);
+    console.log("Price: ", price);
+    console.log("TotalPrice: ", totalPrice);
+
+    //Pushing order details into our Order Object
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice]]; //containing array within array to keep arrays separate
+    orders.currentPizzaOrders.push(userChoice);
+    console.log(`Order.orders: ${orders.currentPizzaOrders}`);
+    console.log(`Pizza Order length: ${orders.currentPizzaOrders.length}`);
+  } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
