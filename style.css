@@ -62,7 +62,7 @@ html {
   /* border-bottom: red; */
   /* background-color: yellow; */
   /* border-bottom: 5px solid #dc3545; */
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.45);
 }
 
 /* Edits to return navbar size back to normal(due to changing html font-size 62.5% */
@@ -71,6 +71,7 @@ html {
 .nav-link,
 .active,
 .home-link,
+.navbar-toggler,
 .cart {
   color: white;
   font-size: 2.6rem;
@@ -78,6 +79,18 @@ html {
   background: fixed;
 }
 
+.navbar-brand:hover,
+.nav-link:hover {
+  color: #dc3545;
+}
+
+/* Hamburger icon */
+.navbar-toggler,
+.navbar-toggler-icon {
+  /* color: white; */
+  color: #dc3545;
+  /* background-color: white; */
+}
 .cart {
   text-transform: capitalize;
   font-weight: 700;
@@ -115,7 +128,7 @@ html {
   /* Space between our items */
   margin: 0rem 0rem 4rem 0rem;
 
-  /* To prevent container content breaking on smaller widths */
+  /* Prevent container content breaking on smaller width devices */
   min-width: 40rem;
   max-width: 60rem;
   min-height: auto;
@@ -171,14 +184,8 @@ html {
   color: grey;
 }
 
-.select-crust {
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-}
-.select-size {
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-}
+.select-crust,
+.select-size,
 .select-quantity {
   margin-bottom: 1rem;
   font-size: 1.6rem;
