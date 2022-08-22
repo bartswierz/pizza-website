@@ -41,7 +41,9 @@ const orders = {
   // totalPrice: 0
 };
 
+////////////////////////////////////////////////////////////////////////////////////////////////
 // HELPER FUNCTIONS
+
 // Calculates pizza price based on chosen Pizza Size
 const calcPrice = function (
   userSize,
@@ -72,6 +74,8 @@ const isOrderValid = function (userCrust, userSize, userQuantity, empty = "") {
   else return false;
 };
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 // Customer added 'Pepperoni Pizza' to their order
 btnPepperoniPizza.addEventListener("click", function (event) {
   // PREVENTS FORM SUBMISSION
@@ -82,21 +86,20 @@ btnPepperoniPizza.addEventListener("click", function (event) {
   const userSize = pepperoniPizzaForm.pepperoni_size.value;
   const userQuantity = pepperoniPizzaForm.pepperoni_quantity.value;
 
-  // Checking if user input is correct BEFORE adding order to our order object
+  // If user input is valid, then PUSH order details to object 'orders'
   if (isOrderValid(userCrust, userSize, userQuantity, "")) {
     console.log(
-      `SUCCESS! Pepperoni Pizza: ${userQuantity}, ${userSize}, ${userCrust} pizza(s) `
-    );
+      `SUCCESS! ${userQuantity} ${userSize} ${userCrust} pepperoni pizza(s) have been ordered.`
+    ); //Add this
+
     // Calculates price of item and total price
     price = calcPrice(userSize, [12.99, 15.99, 18.99]);
     totalPrice = calcTotalPrice(price, userQuantity);
-    console.log("Price: ", price);
-    console.log("TotalPrice: ", totalPrice);
 
-    //Pushing order details into our Order Object
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice]]; //containing array within array to keep arrays separate
+    //Pushing order details into Object 'orders'
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice]]; //sending array to keep pizza orders separate each push
     orders.currentPizzaOrders.push(userChoice);
-    console.log(`Order.orders: ${orders.currentPizzaOrders}`);
-    console.log(`Pizza Order length: ${orders.currentPizzaOrders.length}`);
+    // console.log(orders.currentPizzaOrders);
+    console.log(orders.currentPizzaOrders.length);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
