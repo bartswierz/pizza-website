@@ -151,39 +151,44 @@
                 <span class="price-text">Starting at</span> $12.99
               </p>
 
-              <form>
-                <select class="form-select select-crust">
-                  <option value="1" selected>
-                    <span>Original Crust</span>
-                  </option>
-                  <option value="2">Thin Crust</option>
-                  <option value="3">Pan Crust</option>
-                  <option value="4">Double Dough</option>
-                  <option value="5">Cheese Stuffed</option>
+              <form id="sausagePizzaForm">
+                <select class="form-select select-crust" id="sausage_crust">
+                  <option value="" selected>Select Crust</option>
+                  <option value="original">Original Crust</option>
+                  <option value="thin">Thin Crust</option>
+                  <option value="pan">Pan Crust</option>
+                  <option value="double dough">Double Dough</option>
+                  <option value="cheese stuffed">Cheese Stuffed</option>
                 </select>
-
                 <!-- SIZE -->
-                <select class="form-select select-size">
-                  <option selected>Large</option>
-                  <option value="6">Medium</option>
-                  <option value="7">Small</option>
+                <select class="form-select select-size" id="sausage_size">
+                  <option value="" selected>Select Size</option>
+                  <option value="large">Large</option>
+                  <option value="medium">Medium</option>
+                  <option value="small">Small</option>
                 </select>
-
                 <!-- QUANTITY -->
-                <select class="form-select select-quantity">
+                <select
+                  class="form-select select-quantity"
+                  id="sausage_quantity"
+                >
                   <option selected>Quantity</option>
-                  <option value="8">1</option>
-                  <option value="9">2</option>
-                  <option value="10">3</option>
-                  <option value="11">4</option>
-                  <option value="12">5</option>
-                  <option value="13">6</option>
-                  <option value="14">7</option>
-                  <option value="15">8</option>
-                  <option value="16">9</option>
-                  <option value="17">10</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
-                <button class="btn btn-danger btn-order">Add to Order</button>
+                <button
+                  class="btn btn-danger btn-order form__btn--sausage-pizza"
+                >
+                  Add to Order
+                </button>
               </form>
             </div>
             <div class="img-container">

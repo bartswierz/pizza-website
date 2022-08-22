@@ -5,10 +5,6 @@ Add the above code to all click events to PREVENT FORM SUBMISSION, This will all
 */
 
 //TODO: Move wings, sides, desserts to front page
-//TODO: add pricing logic in btnPepperoni when user clicks 'add to Order' =>
-//  if small -> price = 12.99 & total = quantity * price =>
-// => order.orders.push([crust, size, quantity, price, total])
-//TODO: Refactor If conditional statement in btnPepperoni, move logic into a function and return true or false
 //TODO: Change HTML 'starting at $12.99' to show the correct price
 
 // To select an ID, USE '#' =>
@@ -30,9 +26,11 @@ const empty = "";
 
 // PIZZA FORMS
 const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
+const sausagePizzaForm = document.getElementById("sausagePizzaForm");
 
 // PIZZA BUTTONS
 const btnPepperoniPizza = document.querySelector(".form__btn--pepperoni-pizza");
+const btnSausagePizza = document.querySelector(".form__btn--sausage-pizza");
 
 const orders = {
   // Will hold our: crust, size, quantity, price, totalPrice
@@ -89,7 +87,7 @@ btnPepperoniPizza.addEventListener("click", function (event) {
   // If user input is valid, then PUSH order details to object 'orders'
   if (isOrderValid(userCrust, userSize, userQuantity, "")) {
     console.log(
-      `SUCCESS! ${userQuantity} ${userSize} ${userCrust} pepperoni pizza(s) have been ordered.`
+      `Order received! ${userQuantity} ${userSize} ${userCrust} pepperoni pizza(s) have been ordered.`
     ); //Add this
 
     // Calculates price of item and total price
@@ -97,7 +95,39 @@ btnPepperoniPizza.addEventListener("click", function (event) {
     totalPrice = calcTotalPrice(price, userQuantity);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice]]; //sending array to keep pizza orders separate each push
+    userChoice = [
+      [userCrust, userSize, userQuantity, price, totalPrice, "Pepperoni"],
+    ]; //sending array to keep pizza orders separate each push
+    orders.currentPizzaOrders.push(userChoice);
+    // console.log(orders.currentPizzaOrders);
+    console.log(orders.currentPizzaOrders.length);
+  } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
+});
+
+//Pizza #2 Sausage
+btnSausagePizza.addEventListener("click", function (event) {
+  // PREVENTS FORM SUBMISSION
+  event.preventDefault();
+
+  let userChoice = []; //Will hold our five items
+  const userCrust = sausagePizzaForm.sausage_crust.value;
+  const userSize = sausagePizzaForm.sausage_size.value;
+  const userQuantity = sausagePizzaForm.sausage_quantity.value;
+
+  // If user input is valid, then PUSH order details to object 'orders'
+  if (isOrderValid(userCrust, userSize, userQuantity, "")) {
+    console.log(
+      `Order Received! ${userQuantity} ${userSize} ${userCrust} sausage pizza(s) have been ordered.`
+    ); //Add this
+
+    // Calculates price of item and total price
+    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    totalPrice = calcTotalPrice(price, userQuantity);
+
+    //Pushing order details into Object 'orders'
+    userChoice = [
+      [userCrust, userSize, userQuantity, price, totalPrice, "Sausage"],
+    ]; //sending array to keep pizza orders separate each push
     orders.currentPizzaOrders.push(userChoice);
     // console.log(orders.currentPizzaOrders);
     console.log(orders.currentPizzaOrders.length);
