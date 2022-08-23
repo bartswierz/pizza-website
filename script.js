@@ -7,12 +7,6 @@ Add the above code to all click events to PREVENT FORM SUBMISSION, This will all
 //TODO: Move wings, sides, desserts to front page
 //TODO: Change HTML 'starting at $12.99' to show the correct price
 
-// To select an ID, USE '#' =>
-//querySelector('#idname)
-// To select a class, USE '.' =>
-//querySelector('.className')
-// Use querySelectorAll() to grab all form input box information
-
 // PIZZA FORMS
 const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
 const sausagePizzaForm = document.getElementById("sausagePizzaForm");
@@ -57,7 +51,7 @@ const calcTotalPrice = function (price, userQuantity) {
   return price * userQuantity;
 };
 
-// Checks if user chose a crust, size, and quantity
+// Checks if user chose a crust, size, and quantity. "" prevents no empty order attempts
 const isOrderValid = function (userCrust, userSize, userQuantity) {
   if (
     userCrust !== "Select Crust" &&
@@ -71,8 +65,8 @@ const isOrderValid = function (userCrust, userSize, userQuantity) {
   else return false;
 };
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////
+// PIZZA LOGIC
 // Customer added 'Pepperoni Pizza' to their order
 btnPepperoniPizza.addEventListener("click", function (event) {
   // PREVENTS FORM SUBMISSION
@@ -232,8 +226,8 @@ btnBuffaloChickenPizza.addEventListener("click", function (event) {
     );
 
     // Calculates price of item and total price
-    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
-    totalPrice = calcTotalPrice(price, userQuantity);
+    let price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [
@@ -242,3 +236,6 @@ btnBuffaloChickenPizza.addEventListener("click", function (event) {
     orders.pizzaOrders.push(userChoice);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// WINGS LOGIC

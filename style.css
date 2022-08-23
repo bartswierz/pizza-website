@@ -109,6 +109,17 @@ html {
   background-color: #dc3545;
 }
 
+.section-header {
+  font-size: 6.4rem;
+  color: white;
+  margin-top: 6rem;
+  margin-left: 16rem;
+
+  /* Adds underline AND moves the underline position lower */
+  text-decoration: 10px underline #dc3545;
+  text-underline-position: under;
+}
+
 /* Helps prevent content overflow by not allowing container to shrink more than this */
 .container {
   margin-top: 5rem;
