@@ -7,6 +7,10 @@ Add the above code to all click events to PREVENT FORM SUBMISSION, This will all
 //TODO: Move wings, sides, desserts to front page
 //TODO: Change HTML 'starting at $12.99' to show the correct price
 //TODO: Fix total price to 2 decimal points
+/*TODO: Create a checkout button on navbar
+      --Add eventListener click on this button, this will start iterating through all object array information to CREATE a recipt.
+      --Place this at the BOTTOM of the 
+*/
 
 // ALL FORMS
 const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
@@ -48,12 +52,16 @@ const btnGarlicBreadSide = document.querySelector(".form__btn--garlic-bread-side
 const btnCookieDessert = document.querySelector(".form__btn--cookie-dessert");
 const btnBrowniesDessert = document.querySelector(".form__btn--brownie-dessert");
 
+const current_total = document.getElementById("current_total");
+console.log("current_total", current_total);
+
 // ORDERS OBJECT
 const orders = {
   pizzaOrders: [],
   wingOrders: [],
   sideOrders: [],
   dessertOrders: [],
+  total: 0,
 };
 
 /* 
@@ -70,10 +78,26 @@ const calcPrice = function (userSize, [priceOfSmall, priceOfMedium, priceOfLarge
   else return;
 };
 
+// const updateTotal = function (current_total, addToTotal) {
+//   let updateTotal = current_total + addToTotal;
+//   parseFloat(updateTotal).toFixed(2);
+//   document.getElementById("current_total").textContent = `$${updateTotal}`;
+// };
+
 // Calculates total price
 const calcTotalPrice = function (price, userQuantity) {
   return price * userQuantity;
 };
+
+// const calcTotalPrice = function (price, userQuantity) {
+//   let total = price * userQuantity;
+//   // parseFloat(total).toFixed(2);
+//   console.log("parseFloat(total): ", parseFloat(total.toFixed(2)));
+//   console.log("total Typeof", typeof total);
+//   console.log("calcTotalPrice", total);
+
+//   return total;
+// };
 
 // Checks if user chose a crust, size, and quantity. "" conditional ensures no option is left unchanged
 const isOrderValid = function (userCrust, userSize, userQuantity) {
@@ -110,6 +134,12 @@ btnPepperoniPizza.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Pepperoni"]]; //sending array to keep pizza orders separate each push
     orders.pizzaOrders.push(userChoice);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
+    // updateTotal(orders.total, totalPrice);
+
     console.log(orders.pizzaOrders);
     console.log(orders.pizzaOrders.length);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
@@ -136,6 +166,10 @@ btnSausagePizza.addEventListener("click", function (event) {
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Sausage"]];
     orders.pizzaOrders.push(userChoice);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -160,6 +194,10 @@ btnCheesePizza.addEventListener("click", function (event) {
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Cheese"]];
     orders.pizzaOrders.push(userChoice);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -184,6 +222,10 @@ btnVeggiePizza.addEventListener("click", function (event) {
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Veggie"]];
     orders.pizzaOrders.push(userChoice);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -208,6 +250,10 @@ btnHawaiianPizza.addEventListener("click", function (event) {
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Hawaiian"]];
     orders.pizzaOrders.push(userChoice);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -232,6 +278,10 @@ btnBuffaloChickenPizza.addEventListener("click", function (event) {
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Buffalo Chicken"]];
     orders.pizzaOrders.push(userChoice);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -277,8 +327,10 @@ btnBbqWings.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userWing, userQuantity, price, "Honey BBQ"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
-    console.log(orders.wingOrders);
-    console.log(orders.wingOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += price;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -302,8 +354,10 @@ btnBuffaloWings.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userWing, userQuantity, price, "Buffalo"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
-    console.log(orders.wingOrders);
-    console.log(orders.wingOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += price;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -327,8 +381,10 @@ btnMildWings.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userWing, userQuantity, price, "Mild"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
-    console.log(orders.wingOrders);
-    console.log(orders.wingOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += price;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -352,8 +408,10 @@ btnKoreanBbqWings.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userWing, userQuantity, price, "Korean BBQ"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
-    console.log(orders.wingOrders);
-    console.log(orders.wingOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += price;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -376,8 +434,10 @@ btnTeriyakiWings.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userWing, userQuantity, price, "Teriyaki"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
-    console.log(orders.wingOrders);
-    console.log(orders.wingOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += price;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -400,8 +460,10 @@ btnPlainWings.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userWing, userQuantity, price, "Plain"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
-    console.log(orders.wingOrders);
-    console.log(orders.wingOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += price;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -438,8 +500,10 @@ btnBreadstickSide.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Breadsticks"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
-    console.log(orders.sideOrders);
-    console.log(orders.sideOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -463,6 +527,10 @@ btnFriesSide.addEventListener("click", function (event) {
     //Pushing order details into Object 'order.sideOrders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Fries"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -486,8 +554,10 @@ btnChickenTenderSide.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Chicken Tenders"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
-    console.log(orders.sideOrders);
-    console.log(orders.sideOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -511,8 +581,10 @@ btnGarlicBreadSide.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Garlic Bread"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
-    console.log(orders.sideOrders);
-    console.log(orders.sideOrders.length);
+
+    //Updates our total displayed on the nav
+    orders.total += totalPrice;
+    document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -541,8 +613,6 @@ btnCookieDessert.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Chocolate Chip Cookies"]]; //sending array to keep pizza orders separate each push
     orders.dessertOrders.push(userChoice);
-    console.log(orders.dessertOrders);
-    console.log(orders.dessertOrders.length);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
