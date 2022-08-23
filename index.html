@@ -101,9 +101,9 @@
                 </select>
                 <select class="form-select select-size" id="pepperoni_size">
                   <option value="" selected>Select Size</option>
-                  <option value="large">Large</option>
-                  <option value="medium">Medium</option>
                   <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
                 </select>
                 <select
                   class="form-select select-quantity"
@@ -152,9 +152,9 @@
                 </select>
                 <select class="form-select select-size" id="sausage_size">
                   <option value="" selected>Select Size</option>
-                  <option value="large">Large</option>
-                  <option value="medium">Medium</option>
                   <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
                 </select>
                 <select
                   class="form-select select-quantity"
@@ -205,9 +205,9 @@
                 </select>
                 <select class="form-select select-size" id="cheese_size">
                   <option value="" selected>Select Size</option>
-                  <option value="large">Large</option>
-                  <option value="medium">Medium</option>
                   <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
                 </select>
                 <select
                   class="form-select select-quantity"
@@ -256,9 +256,9 @@
                 </select>
                 <select class="form-select select-size" id="veggie_size">
                   <option value="" selected>Select Size</option>
-                  <option value="large">Large</option>
-                  <option value="medium">Medium</option>
                   <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
                 </select>
                 <select
                   class="form-select select-quantity"
@@ -309,9 +309,9 @@
                 </select>
                 <select class="form-select select-size" id="hawaiian_size">
                   <option value="" selected>Select Size</option>
-                  <option value="large">Large</option>
-                  <option value="medium">Medium</option>
                   <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
                 </select>
                 <select
                   class="form-select select-quantity"
@@ -366,9 +366,9 @@
                   id="buffalo_chicken_size"
                 >
                   <option value="" selected>Select Size</option>
-                  <option value="large">Large</option>
-                  <option value="medium">Medium</option>
                   <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
                 </select>
                 <select
                   class="form-select select-quantity"
@@ -415,20 +415,22 @@
                 <span class="price-text">Starting at</span> $7.99
               </p>
 
-              <form>
-                <select class="form-select select-crust">
+              <form id="bbqWingForm">
+                <select class="form-select select-crust" id="bbq_wing">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="1">Traditional</option>
-                  <option value="2">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
-                <select class="form-select select-quantity">
+                <select class="form-select select-quantity" id="bbq_quantity">
                   <option selected>Quantity</option>
                   <option value="8">8</option>
                   <option value="16">16</option>
                   <option value="24">24</option>
                   <option value="48">48</option>
                 </select>
-                <button class="btn btn-danger btn-order">Add to Order</button>
+                <button class="btn btn-danger btn-order form__btn--bbq-wings">
+                  Add to Order
+                </button>
               </form>
             </div>
             <div class="img-container">
@@ -444,20 +446,27 @@
               <p class="item-price">
                 <span class="price-text">Starting at</span> $7.99
               </p>
-              <form>
-                <select class="form-select select-crust">
+              <form id="buffaloWingForm">
+                <select class="form-select select-crust" id="buffalo_wing">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="1">Traditional</option>
-                  <option value="2">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
-                <select class="form-select select-quantity">
+                <select
+                  class="form-select select-quantity"
+                  id="buffalo_quantity"
+                >
                   <option selected>Quantity</option>
                   <option value="8">8</option>
                   <option value="16">16</option>
                   <option value="24">24</option>
                   <option value="48">48</option>
                 </select>
-                <button class="btn btn-danger btn-order">Add to Order</button>
+                <button
+                  class="btn btn-danger btn-order form__btn--buffalo-wings"
+                >
+                  Add to Order
+                </button>
               </form>
             </div>
             <div class="img-container">
@@ -478,8 +487,8 @@
               <form>
                 <select class="form-select select-crust">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="1">Traditional</option>
-                  <option value="2">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
@@ -507,8 +516,8 @@
               <form>
                 <select class="form-select select-crust">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="1">Traditional</option>
-                  <option value="2">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
@@ -538,8 +547,8 @@
               <form>
                 <select class="form-select select-crust">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="1">Traditional</option>
-                  <option value="2">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
@@ -567,8 +576,8 @@
               <form>
                 <select class="form-select select-crust">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="1">Traditional</option>
-                  <option value="2">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
@@ -603,22 +612,23 @@
               </p>
               <form>
                 <select class="form-select select-crust">
-                  <option value="1" selected>Small - 4 Pcs.</option>
+                  <option value="" selected>Select Size</option>
+                  <option value="1">Small - 4 Pcs.</option>
                   <option value="2">Medium - 6 Pcs.</option>
                   <option value="3">Large - 10 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
-                  <option value="8">1</option>
-                  <option value="9">2</option>
-                  <option value="10">3</option>
-                  <option value="11">4</option>
-                  <option value="12">5</option>
-                  <option value="13">6</option>
-                  <option value="14">7</option>
-                  <option value="15">8</option>
-                  <option value="16">9</option>
-                  <option value="17">10</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
                 <button class="btn btn-danger btn-order">Add to Order</button>
               </form>
@@ -638,22 +648,23 @@
               </p>
               <form>
                 <select class="form-select select-crust">
-                  <option value="1" selected>Small</option>
-                  <option value="2">Medium</option>
-                  <option value="3">Large</option>
+                  <option value="" selected>Select Size</option>
+                  <option value="1">Small - 4 Pcs.</option>
+                  <option value="2">Medium - 6 Pcs.</option>
+                  <option value="3">Large - 10 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
-                  <option value="8">1</option>
-                  <option value="9">2</option>
-                  <option value="10">3</option>
-                  <option value="11">4</option>
-                  <option value="12">5</option>
-                  <option value="13">6</option>
-                  <option value="14">7</option>
-                  <option value="15">8</option>
-                  <option value="16">9</option>
-                  <option value="17">10</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
                 <button class="btn btn-danger btn-order">Add to Order</button>
               </form>
@@ -675,22 +686,23 @@
               </p>
               <form>
                 <select class="form-select select-crust">
-                  <option value="1" selected>Small - 4 Pcs.</option>
+                  <option value="" selected>Select Size</option>
+                  <option value="1">Small - 4 Pcs.</option>
                   <option value="2">Medium - 6 Pcs.</option>
                   <option value="3">Large - 10 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
-                  <option value="8">1</option>
-                  <option value="9">2</option>
-                  <option value="10">3</option>
-                  <option value="11">4</option>
-                  <option value="12">5</option>
-                  <option value="13">6</option>
-                  <option value="14">7</option>
-                  <option value="15">8</option>
-                  <option value="16">9</option>
-                  <option value="17">10</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
                 <button class="btn btn-danger btn-order">Add to Order</button>
               </form>
@@ -712,22 +724,23 @@
               </p>
               <form>
                 <select class="form-select select-crust">
-                  <option value="1" selected>Small - 4 Pcs.</option>
+                  <option value="" selected>Select Size</option>
+                  <option value="1">Small - 4 Pcs.</option>
                   <option value="2">Medium - 6 Pcs.</option>
                   <option value="3">Large - 10 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
-                  <option value="8">1</option>
-                  <option value="9">2</option>
-                  <option value="10">3</option>
-                  <option value="11">4</option>
-                  <option value="12">5</option>
-                  <option value="13">6</option>
-                  <option value="14">7</option>
-                  <option value="15">8</option>
-                  <option value="16">9</option>
-                  <option value="17">10</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
                 <button class="btn btn-danger btn-order">Add to Order</button>
               </form>
@@ -761,16 +774,16 @@
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
-                  <option value="8">1</option>
-                  <option value="9">2</option>
-                  <option value="10">3</option>
-                  <option value="11">4</option>
-                  <option value="12">5</option>
-                  <option value="13">6</option>
-                  <option value="14">7</option>
-                  <option value="15">8</option>
-                  <option value="16">9</option>
-                  <option value="17">10</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
                 <button class="btn btn-danger btn-order">Add to Order</button>
               </form>
@@ -790,22 +803,23 @@
               </p>
               <form>
                 <select class="form-select select-crust">
-                  <option value="1" selected>Small - 3 Pcs.</option>
+                  <option value="" selected>Select Size</option>
+                  <option value="1">Small - 3 Pcs.</option>
                   <option value="2">Medium - 6 Pcs.</option>
                   <option value="3">Large - 9 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity">
                   <option selected>Quantity</option>
-                  <option value="8">1</option>
-                  <option value="9">2</option>
-                  <option value="10">3</option>
-                  <option value="11">4</option>
-                  <option value="12">5</option>
-                  <option value="13">6</option>
-                  <option value="14">7</option>
-                  <option value="15">8</option>
-                  <option value="16">9</option>
-                  <option value="17">10</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
                 <button class="btn btn-danger btn-order">Add to Order</button>
               </form>
