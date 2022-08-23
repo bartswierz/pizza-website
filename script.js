@@ -13,17 +13,6 @@ Add the above code to all click events to PREVENT FORM SUBMISSION, This will all
 //querySelector('.className')
 // Use querySelectorAll() to grab all form input box information
 
-// Misc Variables
-let price = 0;
-let totalPrice = 0;
-// Variables are for helper function: isValidOrder
-const defaultCrust = "Select Crust";
-const defaultSize = "Select Size";
-const defaultQuantity = "Quantity";
-const empty = "";
-
-// let pizzaPrice = [12.99, 15.99, 18.99];
-
 // PIZZA FORMS
 const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
 const sausagePizzaForm = document.getElementById("sausagePizzaForm");
@@ -57,9 +46,9 @@ const calcPrice = function (
   userSize,
   [priceOfSmall, priceOfMedium, priceOfLarge]
 ) {
-  if (userSize === "small") return (price = priceOfSmall);
-  else if (userSize === "medium") return (price = priceOfMedium);
-  else if (userSize === "large") return (price = priceOfLarge);
+  if (userSize === "small") return priceOfSmall;
+  else if (userSize === "medium") return priceOfMedium;
+  else if (userSize === "large") return priceOfLarge;
   else return;
 };
 
@@ -69,14 +58,14 @@ const calcTotalPrice = function (price, userQuantity) {
 };
 
 // Checks if user chose a crust, size, and quantity
-const isOrderValid = function (userCrust, userSize, userQuantity, empty = "") {
+const isOrderValid = function (userCrust, userSize, userQuantity) {
   if (
-    userCrust !== defaultCrust &&
-    userCrust !== empty &&
-    userSize !== defaultSize &&
-    userSize !== empty &&
-    userQuantity !== defaultQuantity &&
-    userQuantity !== empty
+    userCrust !== "Select Crust" &&
+    userCrust !== "" &&
+    userSize !== "Select Size" &&
+    userSize !== "" &&
+    userQuantity !== "Quantity" &&
+    userQuantity !== ""
   )
     return true;
   else return false;
@@ -101,8 +90,8 @@ btnPepperoniPizza.addEventListener("click", function (event) {
     ); //Add this
 
     // Calculates price of item and total price
-    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
-    totalPrice = calcTotalPrice(price, userQuantity);
+    let price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Pushing order details into Object 'orders'
     userChoice = [
@@ -125,14 +114,14 @@ btnSausagePizza.addEventListener("click", function (event) {
   const userQuantity = sausagePizzaForm.sausage_quantity.value;
 
   // If user input is valid, then PUSH order details to object 'orders'
-  if (isOrderValid(userCrust, userSize, userQuantity, "")) {
+  if (isOrderValid(userCrust, userSize, userQuantity)) {
     console.log(
       `Order Received! ${userQuantity} ${userSize} ${userCrust} sausage pizza(s) have been ordered.`
     );
 
     // Calculates price of item and total price
-    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
-    totalPrice = calcTotalPrice(price, userQuantity);
+    let price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [
@@ -159,8 +148,8 @@ btnCheesePizza.addEventListener("click", function (event) {
     );
 
     // Calculates price of item and total price
-    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
-    totalPrice = calcTotalPrice(price, userQuantity);
+    let price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [
@@ -187,8 +176,8 @@ btnVeggiePizza.addEventListener("click", function (event) {
     );
 
     // Calculates price of item and total price
-    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
-    totalPrice = calcTotalPrice(price, userQuantity);
+    let price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [
@@ -215,8 +204,8 @@ btnHawaiianPizza.addEventListener("click", function (event) {
     );
 
     // Calculates price of item and total price
-    price = calcPrice(userSize, [12.99, 15.99, 18.99]);
-    totalPrice = calcTotalPrice(price, userQuantity);
+    let price = calcPrice(userSize, [12.99, 15.99, 18.99]);
+    let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
     userChoice = [
