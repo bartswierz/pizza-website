@@ -11,6 +11,7 @@ Add the above code to all click events to PREVENT FORM SUBMISSION, This will all
       --Add eventListener click on this button, this will start iterating through all object array information to CREATE a recipt.
       --Place this at the BOTTOM of the 
 */
+//TODO: Fix order total to always have 2 decimal places (use .toFixed)
 
 // ALL FORMS
 const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
@@ -113,6 +114,21 @@ const isOrderValid = function (userCrust, userSize, userQuantity) {
   else return false;
 };
 
+{
+  /* <div class="modal-body" id="order_markup">CURRENT ITEM ORDERS MARKUP WILL BE INSERTED HERE</div> */
+  //modal-footer adds thin line BUT we can add our own add border-top
+}
+
+// Updates modal window data to match user's order items chosen
+const updateViewOrder = function (userChoice) {
+  // Destructuring array to pull out data for our html tag
+  const [crust, size, quantity, price, totalPrice, name] = userChoice[0];
+  const update_modal_body = document.querySelector(".modal-body");
+
+  // Adds html into our modal body section. Ternary -> if quantity is greater than 1, then use totalPrice, otherwise use price.
+  update_modal_body.innerHTML += `<p>${quantity} ${size} ${crust} ${name} $${quantity > 1 ? totalPrice : price}</p>`;
+};
+
 // Customer added 'Pepperoni Pizza' to their order
 btnPepperoniPizza.addEventListener("click", function (event) {
   // PREVENTS FORM SUBMISSION
@@ -142,6 +158,9 @@ btnPepperoniPizza.addEventListener("click", function (event) {
 
     console.log(orders.pizzaOrders);
     console.log(orders.pizzaOrders.length);
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrder(userChoice);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -303,8 +322,7 @@ const calcWingPrice = function (userQuantity, [priceOf_8, priceOf_16, priceOf_24
 
 // Checks if user chose a wing style and quantity. "" conditional ensures no option is left unchanged
 const isWingOrderValid = function (userWing, userQuantity) {
-  if (userWing !== "Select Wing Style" && userWing !== "" && userQuantity !== "Quantity" && userQuantity !== "")
-    return true;
+  if (userWing !== "Select Wing Style" && userWing !== "" && userQuantity !== "Quantity" && userQuantity !== "") return true;
   else return false;
 };
 //////////////////////////////////////////////////////
@@ -524,12 +542,21 @@ btnFriesSide.addEventListener("click", function (event) {
     let price = calcPrice(userSize, [2.99, 3.99, 4.99]);
     let totalPrice = calcTotalPrice(price, userQuantity);
 
+    // parseFloat(totalPrice).toFixed(2);
+    // console.log("Type totalPrice", typeof totalPrice);
+
     //Pushing order details into Object 'order.sideOrders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Fries"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
 
     //Updates our total displayed on the nav
+    // orders.total += totalPrice;
+    // parseFloat(totalPrice).toFixed(2); //turns into string
+    // parseFloat(totalPrice); //return to a float
+    // console.log("Orders.total before: ", orders.total, "TotalPrice before: ", totalPrice);
     orders.total += totalPrice;
+    // parseFloat(orders.total).toFixed(2);
+    console.log("orders.total: ", orders.total);
     document.getElementById("current_total").textContent = `$${orders.total}`;
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
@@ -640,3 +667,7 @@ btnBrowniesDessert.addEventListener("click", function (event) {
     console.log(orders.dessertOrders.length);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
+
+// for (const order in orders) {
+//   console.log("item: ", order);
+// }

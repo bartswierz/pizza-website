@@ -75,6 +75,16 @@
             </li>
           </ul>
 
+          <!-- MODAL VIEW ORDER BUTTON -->
+          <button
+            type="button"
+            class="btn btn-danger btn-view-order"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            View Order
+          </button>
+
           <!-- <a class="nav-link active cart" href="#"></a> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" color="color: red" viewBox="0 0 512 512">
             <title>ionicons-v5-d</title>
@@ -103,6 +113,33 @@
         </div>
       </div>
     </nav>
+
+    <!-- OUR MODAL WINDOW DETAILS -->
+    <div
+      class="modal fade order-modal"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <!-- USE id="order_markup" ONCE we generate an html string literal -->
+          <div class="modal-body modal-footer modal-divider" id="order_markup">
+            CURRENT ITEM ORDERS MARKUP WILL BE INSERTED HERE
+          </div>
+          <!-- <div class="modal-body modal-footer modal-divider" id="order_markup">CURRENT ITEM ORDERS MARKUP WILL BE INSERTED HERE</div> -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-browse" data-bs-dismiss="modal">Add More Food</button>
+            <button type="button" class="btn btn-danger btn-checkout">CHECKOUT</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- PIZZA FORMS -->
     <h1 class="section-header">Pizza</h1>

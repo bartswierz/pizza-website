@@ -3,6 +3,7 @@ min-width lg: 992 (x > 768px && x < 992px)
 min-width md: 768 (x > 768px && x < 992px)
 min-width: sm: 576 (x > 576px && x < 768px)
 */
+/* TODO: update navbar item actives to stay white or change to #dc3545. Currently active displays black. */
 
 * {
   box-sizing: border-box;
@@ -87,16 +88,6 @@ html {
   color: #dc3545;
   /* background-color: white; */
 }
-.cart {
-  text-transform: capitalize;
-  font-weight: 700;
-}
-
-.order-total {
-  color: white;
-  font-size: 2.4rem;
-  margin-left: 0.5rem;
-}
 
 .dropdown-item {
   font-size: 2.4rem;
@@ -109,6 +100,42 @@ html {
 
 .dropdown-item:active {
   background-color: #dc3545;
+}
+
+.btn-view-order {
+  margin: 0 1rem 0 1rem;
+  font-size: 2rem;
+}
+
+.order-total {
+  color: white;
+  font-size: 2.4rem;
+  margin: 0rem 0.5rem 0rem 0.5rem;
+}
+
+/* VIEW ORDER MODAL */
+.modal-title {
+  text-align: end;
+  font-size: 2rem;
+}
+
+.modal-body {
+  font-size: 2rem;
+}
+
+.modal-divider {
+  justify-content: center;
+  align-content: center;
+  border-top: grey;
+}
+
+.btn-browse {
+  font-size: 2rem;
+}
+
+.btn-checkout {
+  font-size: 2rem;
+  margin-left: 1rem;
 }
 
 .section-header {
@@ -210,3 +237,7 @@ html {
   font-weight: 700;
   font-size: 1.6rem;
 }
+
+/* .header-inline {
+  display: inline;
+} */
