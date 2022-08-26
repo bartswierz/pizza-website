@@ -33,6 +33,8 @@ const garlicBreadSideForm = document.getElementById("garlicBreadSideForm");
 const cookieDessertForm = document.getElementById("cookieDessertForm");
 const browniesDessertForm = document.getElementById("browniesDessertForm");
 
+const global_reset = document.getElementById("global_reset"); //THIS WILL BE OUR GLOBAL RESET WHEN USER WANTS TO PLACE ANOTHER ORDER
+
 // ALL BUTTONS
 const btnPepperoniPizza = document.querySelector(".form__btn--pepperoni-pizza");
 const btnSausagePizza = document.querySelector(".form__btn--sausage-pizza");

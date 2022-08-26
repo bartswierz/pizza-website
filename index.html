@@ -67,10 +67,14 @@
             </li>
           </ul>
 
-          <!-- MODAL VIEW ORDER BUTTON -->
-          <button type="button" class="btn btn-danger btn-view-order" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-danger btn-view-order" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
             View Order
           </button>
+
+          <!-- MODAL VIEW ORDER BUTTON -->
+          <!-- <button type="button" class="btn btn-danger btn-view-order" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            View Order
+          </button> -->
 
           <!-- <a class="nav-link active cart" href="#"></a> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" color="color: red" viewBox="0 0 512 512">
@@ -101,31 +105,47 @@
       </div>
     </nav>
 
-    <!-- OUR MODAL WINDOW DETAILS -->
-    <div class="modal fade order-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-md">
+    <!-- FIRST - PLACE OUR ORDER DETAILS IN HERE-->
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
+            <h5 class="modal-title" id="exampleModalToggleLabel">Order Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-
-          <!-- WE WILL INSERT USER ORDER DETAILS HERE -->
           <div class="modal-body modal-footer modal-order-details"></div>
-
           <div class="modal-footer">
+            <div class="update-modal-footer"></div>
             <div>
-              <div class="update-modal-footer"></div>
               <button type="button" class="btn btn-secondary btn-add-more" data-bs-dismiss="modal">Add More Food</button>
-              <button type="button" class="btn btn-danger btn-checkout">Place Order</button>
+              <button class="btn btn-danger btn-checkout" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                Place Order
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+    <!-- SECOND THIS ONE WILL BE THE SUBMISSION SCREEN-->
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">Order Submitted Successfully</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">Your order will ready for pickup in <span class="ready_time">25</span> minutes.</div>
+          <div class="modal-footer">
+            <div>Would you like to place another order?</div>
+            <!-- THIS WILL BE OUR RESET BUTTON -->
+            <button class="btn btn-danger" data-bs-dismiss="modal" id="global_reset">Place New Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- PIZZA FORMS -->
     <h1 class="section-header">Pizza</h1>
+
     <div class="container">
       <div class="row">
         <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-6">
@@ -798,3 +818,27 @@
     ></script>
   </body>
 </html>
+
+<!-- PREVIOUS VERSION BEFORE ADDING THANK YOU WINDOW -->
+<!-- OUR MODAL WINDOW DETAILS -->
+<!-- <div class="modal fade order-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          WE WILL INSERT USER ORDER DETAILS HERE
+          <div class="modal-body modal-footer modal-order-details"></div>
+
+          <div class="modal-footer">
+            <div>
+              <div class="update-modal-footer"></div>
+              <button type="button" class="btn btn-secondary btn-add-more" data-bs-dismiss="modal">Add More Food</button>
+              <button type="button" class="btn btn-danger btn-checkout">Place Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
