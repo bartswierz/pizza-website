@@ -282,8 +282,7 @@ const resetOptions = function () {
 };
 
 // const global_reset = document.getElementById("global_reset"); //THIS WILL BE OUR GLOBAL RESET WHEN USER WANTS TO PLACE ANOTHER ORDER
-global_reset.addEventListener("click", function (event) {
-  console.log("PLACE NEW ORDER BUTTON CLICKED!");
+global_reset.addEventListener("click", function () {
   // RESETS OBJECT 'orders' back to its original state
   resetOrders();
 
