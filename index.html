@@ -26,7 +26,7 @@
   <body>
     <!-- NAVBAR -->
     <!-- <nav class="navbar navbar-expand-lg bg-light"> -->
-    <nav class="navbar navbar-expand-lg navbar-color">
+    <nav class="navbar navbar-expand-lg navbar-color navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Brickstone Pizzeria</a>
 
@@ -50,15 +50,7 @@
               <a class="nav-link active home-link" aria-current="page" href="#">Home</a>
             </li> -->
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Menu
-              </a>
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Menu </a>
               <!-- MENU COLLAPSE -->
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/index.html">Pizza</a></li>
@@ -76,12 +68,7 @@
           </ul>
 
           <!-- MODAL VIEW ORDER BUTTON -->
-          <button
-            type="button"
-            class="btn btn-danger btn-view-order"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
+          <button type="button" class="btn btn-danger btn-view-order" data-bs-toggle="modal" data-bs-target="#exampleModal">
             View Order
           </button>
 
@@ -115,27 +102,23 @@
     </nav>
 
     <!-- OUR MODAL WINDOW DETAILS -->
-    <div
-      class="modal fade order-modal"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade order-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <!-- USE id="order_markup" ONCE we generate an html string literal -->
-          <div class="modal-body modal-footer modal-divider" id="order_markup">
-            CURRENT ITEM ORDERS MARKUP WILL BE INSERTED HERE
-          </div>
-          <!-- <div class="modal-body modal-footer modal-divider" id="order_markup">CURRENT ITEM ORDERS MARKUP WILL BE INSERTED HERE</div> -->
+
+          <!-- WE WILL INSERT USER ORDER DETAILS HERE -->
+          <div class="modal-body modal-footer modal-order-details"></div>
+
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-browse" data-bs-dismiss="modal">Add More Food</button>
-            <button type="button" class="btn btn-danger btn-checkout">CHECKOUT</button>
+            <div>
+              <div class="update-modal-footer"></div>
+              <button type="button" class="btn btn-secondary btn-add-more" data-bs-dismiss="modal">Add More Food</button>
+              <button type="button" class="btn btn-danger btn-checkout">Place Order</button>
+            </div>
           </div>
         </div>
       </div>
@@ -153,17 +136,17 @@
               <form id="pepperoniPizzaForm">
                 <select class="form-select select-crust" id="pepperoni_crust">
                   <option value="" selected>Select Crust</option>
-                  <option value="original">Original Crust</option>
-                  <option value="thin">Thin Crust</option>
-                  <option value="pan">Pan Crust</option>
-                  <option value="double dough">Double Dough</option>
-                  <option value="cheese stuffed">Cheese Stuffed</option>
+                  <option value="Original">Original Crust</option>
+                  <option value="Thin">Thin Crust</option>
+                  <option value="Pan">Pan Crust</option>
+                  <option value="Double dough">Double Dough</option>
+                  <option value="Cheese stuffed">Cheese Stuffed</option>
                 </select>
                 <select class="form-select select-size" id="pepperoni_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
                 </select>
                 <select class="form-select select-quantity" id="pepperoni_quantity">
                   <option value="" selected>Quantity</option>
@@ -195,17 +178,17 @@
               <form id="sausagePizzaForm">
                 <select class="form-select select-crust" id="sausage_crust">
                   <option value="" selected>Select Crust</option>
-                  <option value="original">Original Crust</option>
-                  <option value="thin">Thin Crust</option>
-                  <option value="pan">Pan Crust</option>
-                  <option value="double dough">Double Dough</option>
-                  <option value="cheese stuffed">Cheese Stuffed</option>
+                  <option value="Original">Original Crust</option>
+                  <option value="Thin">Thin Crust</option>
+                  <option value="Pan">Pan Crust</option>
+                  <option value="Double dough">Double Dough</option>
+                  <option value="Cheese stuffed">Cheese Stuffed</option>
                 </select>
                 <select class="form-select select-size" id="sausage_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
                 </select>
                 <select class="form-select select-quantity" id="sausage_quantity">
                   <option selected>Quantity</option>
@@ -239,17 +222,17 @@
               <form id="cheesePizzaForm">
                 <select class="form-select select-crust" id="cheese_crust">
                   <option value="" selected>Select Crust</option>
-                  <option value="original">Original Crust</option>
-                  <option value="thin">Thin Crust</option>
-                  <option value="pan">Pan Crust</option>
-                  <option value="double dough">Double Dough</option>
-                  <option value="cheese stuffed">Cheese Stuffed</option>
+                  <option value="Original">Original Crust</option>
+                  <option value="Thin">Thin Crust</option>
+                  <option value="Pan">Pan Crust</option>
+                  <option value="Double dough">Double Dough</option>
+                  <option value="Cheese stuffed">Cheese Stuffed</option>
                 </select>
                 <select class="form-select select-size" id="cheese_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
                 </select>
                 <select class="form-select select-quantity" id="cheese_quantity">
                   <option selected>Quantity</option>
@@ -281,17 +264,17 @@
               <form id="veggiePizzaForm">
                 <select class="form-select select-crust" id="veggie_crust">
                   <option value="" selected>Select Crust</option>
-                  <option value="original">Original Crust</option>
-                  <option value="thin">Thin Crust</option>
-                  <option value="pan">Pan Crust</option>
-                  <option value="double dough">Double Dough</option>
-                  <option value="cheese stuffed">Cheese Stuffed</option>
+                  <option value="Original">Original Crust</option>
+                  <option value="Thin">Thin Crust</option>
+                  <option value="Pan">Pan Crust</option>
+                  <option value="Double dough">Double Dough</option>
+                  <option value="Cheese stuffed">Cheese Stuffed</option>
                 </select>
                 <select class="form-select select-size" id="veggie_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
                 </select>
                 <select class="form-select select-quantity" id="veggie_quantity">
                   <option selected>Quantity</option>
@@ -325,17 +308,17 @@
               <form id="hawaiianPizzaForm">
                 <select class="form-select select-crust" id="hawaiian_crust">
                   <option value="" selected>Select Crust</option>
-                  <option value="original">Original Crust</option>
-                  <option value="thin">Thin Crust</option>
-                  <option value="pan">Pan Crust</option>
-                  <option value="double dough">Double Dough</option>
-                  <option value="cheese stuffed">Cheese Stuffed</option>
+                  <option value="Original">Original Crust</option>
+                  <option value="Thin">Thin Crust</option>
+                  <option value="Pan">Pan Crust</option>
+                  <option value="Double dough">Double Dough</option>
+                  <option value="Cheese stuffed">Cheese Stuffed</option>
                 </select>
                 <select class="form-select select-size" id="hawaiian_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
                 </select>
                 <select class="form-select select-quantity" id="hawaiian_quantity">
                   <option selected>Quantity</option>
@@ -367,17 +350,17 @@
               <form id="buffaloChickenPizzaForm">
                 <select class="form-select select-crust" id="buffalo_chicken_crust">
                   <option value="" selected>Select Crust</option>
-                  <option value="original">Original Crust</option>
-                  <option value="thin">Thin Crust</option>
-                  <option value="pan">Pan Crust</option>
-                  <option value="double dough">Double Dough</option>
-                  <option value="cheese stuffed">Cheese Stuffed</option>
+                  <option value="Original">Original Crust</option>
+                  <option value="Thin">Thin Crust</option>
+                  <option value="Pan">Pan Crust</option>
+                  <option value="Double dough">Double Dough</option>
+                  <option value="Cheese stuffed">Cheese Stuffed</option>
                 </select>
                 <select class="form-select select-size" id="buffalo_chicken_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
                 </select>
                 <select class="form-select select-quantity" id="buffalo_chicken_quantity">
                   <option selected>Quantity</option>
@@ -418,8 +401,8 @@
               <form id="bbqWingForm">
                 <select class="form-select select-crust" id="bbq_wing">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="traditional">Traditional</option>
-                  <option value="boneless">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity" id="bbq_quantity">
                   <option selected>Quantity</option>
@@ -445,8 +428,8 @@
               <form id="buffaloWingForm">
                 <select class="form-select select-crust" id="buffalo_wing">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="traditional">Traditional</option>
-                  <option value="boneless">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity" id="buffalo_quantity">
                   <option selected>Quantity</option>
@@ -501,8 +484,8 @@
               <form id="koreanBbqWingForm">
                 <select class="form-select select-crust" id="korean_bbq_wing">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="traditional">Traditional</option>
-                  <option value="boneless">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity" id="korean_bbq_quantity">
                   <option selected>Quantity</option>
@@ -530,8 +513,8 @@
               <form id="teriyakiWingForm">
                 <select class="form-select select-crust" id="teriyaki_wing">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="traditional">Traditional</option>
-                  <option value="boneless">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity" id="teriyaki_quantity">
                   <option selected>Quantity</option>
@@ -557,8 +540,8 @@
               <form id="plainWingForm">
                 <select class="form-select select-crust" id="plain_wing">
                   <option value="" selected>Select Wing Style</option>
-                  <option value="traditional">Traditional</option>
-                  <option value="boneless">Boneless</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Boneless">Boneless</option>
                 </select>
                 <select class="form-select select-quantity" id="plain_quantity">
                   <option selected>Quantity</option>
@@ -592,9 +575,9 @@
               <form id="breadstickSideForm">
                 <select class="form-select select-crust" id="breadstick_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small - 4 Pcs.</option>
-                  <option value="medium">Medium - 6 Pcs.</option>
-                  <option value="large">Large - 10 Pcs.</option>
+                  <option value="Small">Small - 4 Pcs.</option>
+                  <option value="Medium">Medium - 6 Pcs.</option>
+                  <option value="Large">Large - 10 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity" id="breadstick_quantity">
                   <option selected>Quantity</option>
@@ -626,9 +609,9 @@
               <form id="friesSideForm">
                 <select class="form-select select-crust" id="fries_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
                 </select>
                 <select class="form-select select-quantity" id="fries_quantity">
                   <option selected>Quantity</option>
@@ -662,9 +645,9 @@
               <form id="chickenTenderSideForm">
                 <select class="form-select select-crust" id="chicken_tender_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small - 4 Pcs.</option>
-                  <option value="medium">Medium - 6 Pcs.</option>
-                  <option value="large">Large - 10 Pcs.</option>
+                  <option value="Small">Small - 4 Pcs.</option>
+                  <option value="Medium">Medium - 6 Pcs.</option>
+                  <option value="Large">Large - 10 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity" id="chicken_tender_quantity">
                   <option selected>Quantity</option>
@@ -696,9 +679,9 @@
               <form id="garlicBreadSideForm">
                 <select class="form-select select-crust" id="garlic_bread_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small - 4 Pcs.</option>
-                  <option value="medium">Medium - 6 Pcs.</option>
-                  <option value="large">Large - 10 Pcs.</option>
+                  <option value="Small">Small - 4 Pcs.</option>
+                  <option value="Medium">Medium - 6 Pcs.</option>
+                  <option value="Large">Large - 10 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity" id="garlic_bread_quantity">
                   <option selected>Quantity</option>
@@ -738,9 +721,9 @@
               <form id="cookieDessertForm">
                 <select class="form-select select-crust" id="cookie_size">
                   <option value="">Select Size</option>
-                  <option value="small">Small - 3 Pcs.</option>
-                  <option value="medium">Medium - 6 Pcs.</option>
-                  <option value="large">Large - 9 Pcs.</option>
+                  <option value="Small">Small - 3 Pcs.</option>
+                  <option value="Medium">Medium - 6 Pcs.</option>
+                  <option value="Large">Large - 9 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity" id="cookie_quantity">
                   <option selected>Quantity</option>
@@ -772,9 +755,9 @@
               <form id="browniesDessertForm">
                 <select class="form-select select-crust" id="brownies_size">
                   <option value="" selected>Select Size</option>
-                  <option value="small">Small - 3 Pcs.</option>
-                  <option value="medium">Medium - 6 Pcs.</option>
-                  <option value="large">Large - 9 Pcs.</option>
+                  <option value="Small">Small - 3 Pcs.</option>
+                  <option value="Medium">Medium - 6 Pcs.</option>
+                  <option value="Large">Large - 9 Pcs.</option>
                 </select>
                 <select class="form-select select-quantity" id="brownies_quantity">
                   <option selected>Quantity</option>

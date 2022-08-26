@@ -22,8 +22,7 @@ body {
     ),
     url("./img/background-img1.jpg"); */
 
-  background-image: linear-gradient(to top left, rgba(117, 19, 19, 0.63), rgba(117, 19, 19, 0.63)),
-    url("./img/background-img1.jpg");
+  background-image: linear-gradient(to top left, rgba(117, 19, 19, 0.63), rgba(117, 19, 19, 0.63)), url("./img/background-img1.jpg");
 
   /* background-repeat: no-repeat; */
   /* This keeps our image fixed when we scroll down */
@@ -116,26 +115,45 @@ html {
 /* VIEW ORDER MODAL */
 .modal-title {
   text-align: end;
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
-.modal-body {
-  font-size: 2rem;
-}
-
-.modal-divider {
-  justify-content: center;
-  align-content: center;
+.modal-order-details {
+  /* align-content: center; */
+  font-size: 2.6rem;
   border-top: grey;
+  flex-direction: column;
+  text-align: end;
+  align-content: flex-end;
 }
 
-.btn-browse {
-  font-size: 2rem;
+.align-item-end {
+  align-self: flex-end;
+  padding-right: 0.5rem;
+}
+.update-modal-footer {
+  font-size: 2.8rem;
+  /* grabs remaining flex space from the left */
+  flex-grow: calc(0.5);
+  text-align: end;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+}
+
+.modal-md {
+  min-width: 46rem;
+}
+
+.btn-add-more {
+  font-size: 2.7rem;
+  padding: 0 2rem 0 2rem;
 }
 
 .btn-checkout {
-  font-size: 2rem;
+  font-size: 2.7rem;
   margin-left: 1rem;
+  padding: 0 2rem 0 2rem;
+  padding-right: 1rem;
 }
 
 .section-header {
@@ -237,7 +255,3 @@ html {
   font-weight: 700;
   font-size: 1.6rem;
 }
-
-/* .header-inline {
-  display: inline;
-} */

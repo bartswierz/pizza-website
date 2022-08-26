@@ -73,32 +73,16 @@ const orders = {
 //  PIZZA HELPER FUNCTIONS
 // Calculates pizza price based on chosen Pizza Size
 const calcPrice = function (userSize, [priceOfSmall, priceOfMedium, priceOfLarge]) {
-  if (userSize === "small") return priceOfSmall;
-  else if (userSize === "medium") return priceOfMedium;
-  else if (userSize === "large") return priceOfLarge;
+  if (userSize === "Small") return priceOfSmall;
+  else if (userSize === "Medium") return priceOfMedium;
+  else if (userSize === "Large") return priceOfLarge;
   else return;
 };
-
-// const updateTotal = function (current_total, addToTotal) {
-//   let updateTotal = current_total + addToTotal;
-//   parseFloat(updateTotal).toFixed(2);
-//   document.getElementById("current_total").textContent = `$${updateTotal}`;
-// };
 
 // Calculates total price
 const calcTotalPrice = function (price, userQuantity) {
   return price * userQuantity;
 };
-
-// const calcTotalPrice = function (price, userQuantity) {
-//   let total = price * userQuantity;
-//   // parseFloat(total).toFixed(2);
-//   console.log("parseFloat(total): ", parseFloat(total.toFixed(2)));
-//   console.log("total Typeof", typeof total);
-//   console.log("calcTotalPrice", total);
-
-//   return total;
-// };
 
 // Checks if user chose a crust, size, and quantity. "" conditional ensures no option is left unchanged
 const isOrderValid = function (userCrust, userSize, userQuantity) {
@@ -114,19 +98,57 @@ const isOrderValid = function (userCrust, userSize, userQuantity) {
   else return false;
 };
 
-{
-  /* <div class="modal-body" id="order_markup">CURRENT ITEM ORDERS MARKUP WILL BE INSERTED HERE</div> */
-  //modal-footer adds thin line BUT we can add our own add border-top
-}
+// Updates current order total displayed on page
+const updateCurrentTotal = function () {
+  document.getElementById("current_total").textContent = `$${parseFloat(orders.total).toFixed(2)}`;
+};
 
-// Updates modal window data to match user's order items chosen
+// Updates current tax amount displayed on page
+const updateCurrentTax = function () {
+  document.getElementById("current_total").textContent = `$${orders.total}`;
+};
+
+const calcTwoFloats = function (valueOne, valueTwo) {
+  /*Parse converts STRING to FLOAT
+  Math.round multiplication FIXES our floating addition inaccuracy error giving 10-12 extra decimal places. */
+  return Math.round((parseFloat(valueOne) + parseFloat(valueTwo)) * 100) / 100;
+};
+
+//updates the subtotal, tax and total price after each order addition. PLACE AT THE END OF an order
+//Add total, add subtotal, add tax(0.06 * subtotal)
+const updateModalFooter = function () {
+  const update_footer = document.querySelector(".update-modal-footer");
+  const subtotal = orders.total;
+  const tax = orders.total * 0.06; //6%
+  const total = calcTwoFloats(subtotal, tax); //works
+  //Reason for parse: Had to place parseFloat inside template BECAUSE floating addition added trailing 0s on our display
+  //remove current and then add new in its place
+
+  update_footer.innerHTML = `
+  Subtotal: $${parseFloat(subtotal).toFixed(2)}<br>
+  Tax:      $${parseFloat(tax).toFixed(2)}<br>
+  Total:    $${parseFloat(total).toFixed(2)}
+  `;
+
+  // update_footer.innerHTML = `
+  // Subtotal: $${subtotal.padEnd(9, "0")}<br>
+  // Tax:      $${tax}<br>
+  // Total:    $${total}
+  // `;
+};
+
+// Updates modal window data to match user's pizza order items chosen
 const updateViewOrder = function (userChoice) {
   // Destructuring array to pull out data for our html tag
   const [crust, size, quantity, price, totalPrice, name] = userChoice[0];
   const update_modal_body = document.querySelector(".modal-body");
-
+  // parseFloat(totalPrice).toFixed(2);
+  // parseFloat(price).toFixed(2);
   // Adds html into our modal body section. Ternary -> if quantity is greater than 1, then use totalPrice, otherwise use price.
-  update_modal_body.innerHTML += `<p>${quantity} ${size} ${crust} ${name} $${quantity > 1 ? totalPrice : price}</p>`;
+  update_modal_body.innerHTML += `<p class="align-item-end">${quantity}x ${size} ${crust} ${name} <span class="align-item-end">$${
+    quantity > 1 ? parseFloat(totalPrice).toFixed(2) : parseFloat(price).toFixed(2)
+  }</span></p>`;
+  updateModalFooter();
 };
 
 // Customer added 'Pepperoni Pizza' to their order
@@ -148,16 +170,17 @@ btnPepperoniPizza.addEventListener("click", function (event) {
     let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Pepperoni"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Pepperoni Pizza(s)"]]; //sending array to keep pizza orders separate each push
     orders.pizzaOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
-    // updateTotal(orders.total, totalPrice);
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
 
     console.log(orders.pizzaOrders);
-    console.log(orders.pizzaOrders.length);
+    // console.log(orders.pizzaOrders.length);
 
     //UPDATING VIEW ORDER MODAL WINDOW
     updateViewOrder(userChoice);
@@ -183,12 +206,17 @@ btnSausagePizza.addEventListener("click", function (event) {
     let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Sausage"]];
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Sausage Pizza(s)"]];
     orders.pizzaOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrder(userChoice);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -211,12 +239,17 @@ btnCheesePizza.addEventListener("click", function (event) {
     let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Cheese"]];
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Cheese Pizza(s)"]];
     orders.pizzaOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrder(userChoice);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -239,12 +272,17 @@ btnVeggiePizza.addEventListener("click", function (event) {
     let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Veggie"]];
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Veggie Pizza(s)"]];
     orders.pizzaOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrder(userChoice);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -267,12 +305,17 @@ btnHawaiianPizza.addEventListener("click", function (event) {
     let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Hawaiian"]];
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Hawaiian Pizza(s)"]];
     orders.pizzaOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrder(userChoice);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -295,12 +338,17 @@ btnBuffaloChickenPizza.addEventListener("click", function (event) {
     let totalPrice = calcTotalPrice(price, userQuantity);
 
     //Placing ALL order details into an array and pushing into Object 'orders'
-    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Buffalo Chicken"]];
+    userChoice = [[userCrust, userSize, userQuantity, price, totalPrice, "Buffalo Chicken Pizza(s)"]];
     orders.pizzaOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrder(userChoice);
   } else alert("Incomplete order, please choose a crust, size, and quantity. Thanks!");
 });
 
@@ -325,6 +373,17 @@ const isWingOrderValid = function (userWing, userQuantity) {
   if (userWing !== "Select Wing Style" && userWing !== "" && userQuantity !== "Quantity" && userQuantity !== "") return true;
   else return false;
 };
+
+// Updates modal window by adding user's wing order
+const updateViewOrderWings = function (userChoice) {
+  // Destructuring array to pull out data for our html tag
+  const [wingType, quantity, price, name] = userChoice[0];
+  const update_modal_body = document.querySelector(".modal-body");
+
+  // Adds html into our modal body section. Ternary -> if quantity is greater than 1, then use totalPrice, otherwise use price.
+  // update_modal_body.innerHTML += `<p>${quantity} ${size} ${crust} ${name} $${quantity > 1 ? totalPrice : price}</p>`; //works
+  update_modal_body.innerHTML += `<p class="align-item-end">${quantity} Pcs. ${wingType} ${name} <span class="align-item-end">$${price}</span></p>`;
+};
 //////////////////////////////////////////////////////
 btnBbqWings.addEventListener("click", function (event) {
   // PREVENTS FORM SUBMISSION
@@ -343,12 +402,17 @@ btnBbqWings.addEventListener("click", function (event) {
     let price = calcWingPrice(userQuantity, [7.99, 15.99, 23.99, 47.99]);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userWing, userQuantity, price, "Honey BBQ"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userWing, userQuantity, price, "Honey BBQ Wings"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += price;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, price);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderWings(userChoice);
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -370,12 +434,17 @@ btnBuffaloWings.addEventListener("click", function (event) {
     let price = calcWingPrice(userQuantity, [7.99, 15.99, 23.99, 47.99]);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userWing, userQuantity, price, "Buffalo"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userWing, userQuantity, price, "Buffalo Wings"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += price;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, price);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderWings(userChoice);
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -397,12 +466,17 @@ btnMildWings.addEventListener("click", function (event) {
     let price = calcWingPrice(userQuantity, [7.99, 15.99, 23.99, 47.99]);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userWing, userQuantity, price, "Mild"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userWing, userQuantity, price, "Mild Wings"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += price;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, price);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderWings(userChoice);
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -424,12 +498,17 @@ btnKoreanBbqWings.addEventListener("click", function (event) {
     let price = calcWingPrice(userQuantity, [7.99, 15.99, 23.99, 47.99]);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userWing, userQuantity, price, "Korean BBQ"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userWing, userQuantity, price, "Korean BBQ Wings"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += price;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, price);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderWings(userChoice);
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -450,12 +529,17 @@ btnTeriyakiWings.addEventListener("click", function (event) {
     let price = calcWingPrice(userQuantity, [7.99, 15.99, 23.99, 47.99]);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userWing, userQuantity, price, "Teriyaki"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userWing, userQuantity, price, "Teriyaki Wings"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += price;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, price);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderWings(userChoice);
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -476,12 +560,17 @@ btnPlainWings.addEventListener("click", function (event) {
     let price = calcWingPrice(userQuantity, [7.99, 15.99, 23.99, 47.99]);
 
     //Pushing order details into Object 'orders'
-    userChoice = [[userWing, userQuantity, price, "Plain"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userWing, userQuantity, price, "Plain Wings"]]; //sending array to keep pizza orders separate each push
     orders.wingOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += price;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, price);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderWings(userChoice);
   } else alert("Incomplete order, please choose a wing style and quantity. Thanks!");
 });
 
@@ -496,6 +585,25 @@ btnPlainWings.addEventListener("click", function (event) {
 const isSideOrderValid = function (userSize, userQuantity) {
   if (userSize !== "Select Size" && userSize !== "" && userQuantity !== "Quantity" && userQuantity !== "") return true;
   else return false;
+};
+
+// Updates modal window by adding user's side order
+const updateViewOrderSides = function (userChoice) {
+  // Destructuring array to pull out data for our html tag
+  const [size, quantity, price, totalPrice, name] = userChoice[0];
+  const update_modal_body = document.querySelector(".modal-body");
+  // userChoice = [[userSize, userQuantity, price, totalPrice, "Breadsticks"]];
+  //Medium(3 Pcs) Breadsticks $price
+
+  // Adds html into our modal body section. Ternary -> if quantity is greater than 1, then use totalPrice, otherwise use price. DOES NOT REPLACE PREVIOUS ORDER TEXT, WE ARE ADDING ANOTHER ENTRY ABOVE
+  update_modal_body.innerHTML += `<p class="align-item-end">${quantity}x ${size} ${name} <span class="align-item-end">$${
+    quantity > 1 ? parseFloat(totalPrice).toFixed(2) : parseFloat(price).toFixed(2)
+  }</span></p>`;
+
+  // update_modal_body.innerHTML += `<p class="align-item-end">${quantity}x ${size} ${crust} ${name} <span class="align-item-end">$${
+  //   quantity > 1 ? parseFloat(totalPrice).toFixed(2) : parseFloat(price).toFixed(2)
+  // }</span></p>`;
+  updateModalFooter();
 };
 
 // BREADSTICKS
@@ -519,9 +627,14 @@ btnBreadstickSide.addEventListener("click", function (event) {
     userChoice = [[userSize, userQuantity, price, totalPrice, "Breadsticks"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderSides(userChoice);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -546,18 +659,17 @@ btnFriesSide.addEventListener("click", function (event) {
     // console.log("Type totalPrice", typeof totalPrice);
 
     //Pushing order details into Object 'order.sideOrders'
-    userChoice = [[userSize, userQuantity, price, totalPrice, "Fries"]]; //sending array to keep pizza orders separate each push
+    userChoice = [[userSize, userQuantity, price, totalPrice, "French Fries"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    // orders.total += totalPrice;
-    // parseFloat(totalPrice).toFixed(2); //turns into string
-    // parseFloat(totalPrice); //return to a float
-    // console.log("Orders.total before: ", orders.total, "TotalPrice before: ", totalPrice);
-    orders.total += totalPrice;
-    // parseFloat(orders.total).toFixed(2);
-    console.log("orders.total: ", orders.total);
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderSides(userChoice);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -582,9 +694,14 @@ btnChickenTenderSide.addEventListener("click", function (event) {
     userChoice = [[userSize, userQuantity, price, totalPrice, "Chicken Tenders"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderSides(userChoice);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -609,9 +726,14 @@ btnGarlicBreadSide.addEventListener("click", function (event) {
     userChoice = [[userSize, userQuantity, price, totalPrice, "Garlic Bread"]]; //sending array to keep pizza orders separate each push
     orders.sideOrders.push(userChoice);
 
-    //Updates our total displayed on the nav
-    orders.total += totalPrice;
-    document.getElementById("current_total").textContent = `$${orders.total}`;
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderSides(userChoice);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -640,6 +762,15 @@ btnCookieDessert.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Chocolate Chip Cookies"]]; //sending array to keep pizza orders separate each push
     orders.dessertOrders.push(userChoice);
+
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderSides(userChoice);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
 
@@ -663,11 +794,14 @@ btnBrowniesDessert.addEventListener("click", function (event) {
     //Pushing order details into Object 'orders'
     userChoice = [[userSize, userQuantity, price, totalPrice, "Brownies"]]; //sending array to keep pizza orders separate each push
     orders.dessertOrders.push(userChoice);
-    console.log(orders.dessertOrders);
-    console.log(orders.dessertOrders.length);
+
+    //Updating orders utilizing parseFloat() and Math.round() to FIX/PREVENT rounding errors
+    orders.total = calcTwoFloats(orders.total, totalPrice);
+
+    //Updating our current order total
+    updateCurrentTotal();
+
+    //UPDATING VIEW ORDER MODAL WINDOW
+    updateViewOrderSides(userChoice);
   } else alert("Incomplete order, please choose a size and quantity. Thanks!");
 });
-
-// for (const order in orders) {
-//   console.log("item: ", order);
-// }
