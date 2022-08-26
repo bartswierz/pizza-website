@@ -100,9 +100,14 @@ const isOrderValid = function (userCrust, userSize, userQuantity) {
   else return false;
 };
 
-// Updates current order total displayed on page
+// UPDATES current order total displayed on page
 const updateCurrentTotal = function () {
   document.getElementById("current_total").textContent = `$${parseFloat(orders.total).toFixed(2)}`;
+};
+
+// RESETS current order total displayed on page
+const resetCurrentTotal = function () {
+  document.getElementById("current_total").textContent = `$0.00`;
 };
 
 // Updates current tax amount displayed on page
@@ -152,6 +157,148 @@ const updateViewOrder = function (userChoice) {
   }</span></p>`;
   updateModalFooter();
 };
+
+const resetViewOrder = function () {
+  const update_modal_body = document.querySelector(".modal-body");
+  update_modal_body.innerHTML = ``;
+};
+
+// RESETS modal footer (subtotal, tax, total removed)
+const resetModalFooter = function () {
+  const update_footer = document.querySelector(".update-modal-footer");
+  update_footer.innerHTML = ``;
+};
+
+// RESET ORDERS values back to default
+const resetOrders = function () {
+  (orders.pizzaOrders = []), (orders.wingOrders = []), (orders.sideOrders = []), (orders.dessertOrders = []), (orders.total = 0);
+};
+
+// RESETTING ALL ORDER OPTIONS TO DEFAULT VALUES
+const resetOptions = function () {
+  // PIZZA
+  const pepperoni_crust = document.getElementById("pepperoni_crust");
+  const pepperoni_size = document.getElementById("pepperoni_size");
+  const pepperoni_quantity = document.getElementById("pepperoni_quantity");
+  pepperoni_crust.selectedIndex = null;
+  pepperoni_size.selectedIndex = null;
+  pepperoni_quantity.selectedIndex = null;
+
+  const sausage_crust = document.getElementById("sausage_crust");
+  const sausage_size = document.getElementById("sausage_size");
+  const sausage_quantity = document.getElementById("sausage_quantity");
+  sausage_crust.selectedIndex = null;
+  sausage_size.selectedIndex = null;
+  sausage_quantity.selectedIndex = null;
+
+  const cheese_crust = document.getElementById("cheese_crust");
+  const cheese_size = document.getElementById("cheese_size");
+  const cheese_quantity = document.getElementById("cheese_quantity");
+  cheese_crust.selectedIndex = null;
+  cheese_size.selectedIndex = null;
+  cheese_quantity.selectedIndex = null;
+
+  const veggie_crust = document.getElementById("veggie_crust");
+  const veggie_size = document.getElementById("veggie_size");
+  const veggie_quantity = document.getElementById("veggie_quantity");
+  veggie_crust.selectedIndex = null;
+  veggie_size.selectedIndex = null;
+  veggie_quantity.selectedIndex = null;
+
+  const hawaiian_crust = document.getElementById("hawaiian_crust");
+  const hawaiian_size = document.getElementById("hawaiian_size");
+  const hawaiian_quantity = document.getElementById("hawaiian_quantity");
+  hawaiian_crust.selectedIndex = null;
+  hawaiian_size.selectedIndex = null;
+  hawaiian_quantity.selectedIndex = null;
+
+  const buffalo_chicken_crust = document.getElementById("buffalo_chicken_crust");
+  const buffalo_chicken_size = document.getElementById("buffalo_chicken_size");
+  const buffalo_chicken_quantity = document.getElementById("buffalo_chicken_quantity");
+  buffalo_chicken_crust.selectedIndex = null;
+  buffalo_chicken_size.selectedIndex = null;
+  buffalo_chicken_quantity.selectedIndex = null;
+
+  // WINGS
+  const bbq_wing = document.getElementById("bbq_wing");
+  const bbq_quantity = document.getElementById("bbq_quantity");
+  bbq_wing.selectedIndex = null;
+  bbq_quantity.selectedIndex = null;
+
+  const buffalo_wing = document.getElementById("buffalo_wing");
+  const buffalo_quantity = document.getElementById("buffalo_quantity");
+  buffalo_wing.selectedIndex = null;
+  buffalo_quantity.selectedIndex = null;
+
+  const mild_wing = document.getElementById("mild_wing");
+  const mild_quantity = document.getElementById("mild_quantity");
+  mild_wing.selectedIndex = null;
+  mild_quantity.selectedIndex = null;
+
+  const korean_bbq_wing = document.getElementById("korean_bbq_wing");
+  const korean_bbq_quantity = document.getElementById("korean_bbq_quantity");
+  korean_bbq_wing.selectedIndex = null;
+  korean_bbq_quantity.selectedIndex = null;
+
+  const teriyaki_wing = document.getElementById("teriyaki_wing");
+  const teriyaki_quantity = document.getElementById("teriyaki_quantity");
+  teriyaki_wing.selectedIndex = null;
+  teriyaki_quantity.selectedIndex = null;
+
+  const plain_wing = document.getElementById("plain_wing");
+  const plain_quantity = document.getElementById("plain_quantity");
+  plain_wing.selectedIndex = null;
+  plain_quantity.selectedIndex = null;
+
+  const breadstick_size = document.getElementById("breadstick_size");
+  const breadstick_quantity = document.getElementById("breadstick_quantity");
+  breadstick_size.selectedIndex = null;
+  breadstick_quantity.selectedIndex = null;
+
+  const fries_size = document.getElementById("fries_size");
+  const fries_quantity = document.getElementById("fries_quantity");
+  fries_size.selectedIndex = null;
+  fries_quantity.selectedIndex = null;
+
+  const chicken_tender_size = document.getElementById("chicken_tender_size");
+  const chicken_tender_quantity = document.getElementById("chicken_tender_quantity");
+  chicken_tender_size.selectedIndex = null;
+  chicken_tender_quantity.selectedIndex = null;
+
+  const garlic_bread_size = document.getElementById("garlic_bread_size");
+  const garlic_bread_quantity = document.getElementById("garlic_bread_quantity");
+  garlic_bread_size.selectedIndex = null;
+  garlic_bread_quantity.selectedIndex = null;
+
+  const cookie_size = document.getElementById("cookie_size");
+  const cookie_quantity = document.getElementById("cookie_quantity");
+  cookie_size.selectedIndex = null;
+  cookie_quantity.selectedIndex = null;
+
+  const brownies_size = document.getElementById("brownies_size");
+  const brownies_quantity = document.getElementById("brownies_quantity");
+  brownies_size.selectedIndex = null;
+  brownies_quantity.selectedIndex = null;
+};
+
+// const global_reset = document.getElementById("global_reset"); //THIS WILL BE OUR GLOBAL RESET WHEN USER WANTS TO PLACE ANOTHER ORDER
+global_reset.addEventListener("click", function (event) {
+  console.log("PLACE NEW ORDER BUTTON CLICKED!");
+  // RESETS OBJECT 'orders' back to its original state
+  resetOrders();
+
+  // RESETS USER'S CURRENT TOTAL BACK TO $0.00
+  resetCurrentTotal();
+
+  //RESET MODAL BODY
+  resetViewOrder();
+
+  // RESET MODAL FOOTER
+  resetModalFooter();
+
+  // RESET SELECT OPTIONS BACK TO DEFAULT
+  resetOptions();
+});
 
 // Customer added 'Pepperoni Pizza' to their order
 btnPepperoniPizza.addEventListener("click", function (event) {

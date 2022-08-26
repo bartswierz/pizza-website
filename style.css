@@ -255,3 +255,23 @@ html {
   font-weight: 700;
   font-size: 1.6rem;
 }
+
+.footer-question {
+  font-size: 2.6rem;
+  padding-right: 2rem;
+}
+
+.order-ready-time {
+  font-size: 2.6rem;
+}
+
+.random-ready-time {
+}
+
+.btn-new-order {
+  font-size: 2.6rem;
+}
+
+.title-color {
+  color: #dc3545;
+}

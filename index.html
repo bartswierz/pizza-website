@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pizza Website</title>
+    <title>PYZZA BYTES</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,7 +28,9 @@
     <!-- <nav class="navbar navbar-expand-lg bg-light"> -->
     <nav class="navbar navbar-expand-lg navbar-color navbar-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Brickstone Pizzeria</a>
+        <a class="navbar-brand" href="#"
+          ><span class="color-swap">P<span class="title-color">Y</span>ZZA B<span class="title-color">Y</span>TES</span></a
+        >
 
         <!-- Hamburger ICON - For Small Width/Mobile -->
         <button
@@ -134,11 +136,13 @@
             <h5 class="modal-title" id="exampleModalToggleLabel2">Order Submitted Successfully</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">Your order will ready for pickup in <span class="ready_time">25</span> minutes.</div>
+          <div class="modal-body order-ready-time">
+            Your order will ready for pickup in about <span class="random-ready-time">25</span> minutes.
+          </div>
           <div class="modal-footer">
-            <div>Would you like to place another order?</div>
+            <div class="footer-question">Would you like to place another order?</div>
             <!-- THIS WILL BE OUR RESET BUTTON -->
-            <button class="btn btn-danger" data-bs-dismiss="modal" id="global_reset">Place New Order</button>
+            <button class="btn btn-danger btn-new-order" data-bs-dismiss="modal" id="global_reset">Place New Order</button>
           </div>
         </div>
       </div>
