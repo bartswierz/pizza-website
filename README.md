@@ -7,9 +7,9 @@ Project can be launched without any installations directly on your device. Proje
 https://pyzzabytes.netlify.app/
 
 ## Learning Project ##
-I built this project to put what I learn in my JavaScript udemy course to the test by putting away the videos and only utilizing MDN documentation, stackoverflow, blogs, and other online resources for learning. I wanted to avoid being stuck in tutorials and wanted to really challenge myself with a project that would require me to get familiar with JavaScript and DOM manipulation. Through this project, I was able to really get a better grasp of what I have seen during the videos, and made the topics so much more clear looking back at them now. This approach of putting away the videos allowed me to think outside the box and get my hands dirty trying to implement everything I have learned through the udemy course. I also added an extra level of difficulty by adding bootstrap to the mix. I have used bootstrap in the past very lightly for a simple blog post for an assignment but I wanted to get better at bootstrap 5. It was a great experience and really enjoyed every minute of this project. 
+I built this project to challenge myself on the material that I learned from my JavaScript udemy course. I put away the videos and only utilizing MDN documentation, stackoverflow, blogs, and other online resources to work through my project. I wanted to avoid being stuck in tutorials and wanted to really challenge myself with a project that would require me to get familiar with JavaScript and DOM manipulation. Through this project, I was able to get a good grasp of what I have seen during the videos, and made the topics so much more clear looking back at them now. This approach of putting away the videos allowed me to think outside the box and get my hands dirty trying to implement everything I had learned through the udemy course. I also added an extra level of difficulty by adding bootstrap to the mix. I have used bootstrap in the past very lightly for a simple blog post for an assignment but I wanted to get better at bootstrap 5. It was a great experience and really enjoyed every minute. This project is great because it is one that I can continously add new features to as my skills as a developer improve.
 
-## Built Using ##
+## Built With ##
  
 * HTML
 * CSS
@@ -28,4 +28,5 @@ New Order | User can start a new order that by clicking: View Order -> Place Ord
 ## Future Features ##
 Feature  | Description
 ------------- | -------------
-Remove Item   | User will be able to remove an item by clicking the 'View Order' button and then clicking the 'Remove' button inside the order details modal window. This will remove                 the item, update the new subtotal, total, tax, and the total displayed on the navigation menu.
+Remove Item   | User will be able to remove an item by clicking the 'View Order' button and then clicking the 'Remove' button inside the order details modal window. This will remove the item, update the new subtotal, total, tax, and the total displayed on the navigation menu.
+Discount | User will receive a discount on a specific type of item depending on the current day of the week.
