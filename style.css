@@ -264,9 +264,6 @@ html {
   font-size: 2.6rem;
 }
 
-.random-ready-time {
-}
-
 .btn-new-order {
   font-size: 2.6rem;
 }
@@ -281,7 +278,6 @@ html {
     display: flex;
     flex-direction: column;
     max-width: 47rem;
-    /* margin: 0 auto; */
   }
 
   .img-container {
@@ -292,6 +288,11 @@ html {
 
   button.btn-order {
     width: 100%;
+  }
+
+  .section-header {
+    margin-left: 0;
+    text-align: center;
   }
 }
 
