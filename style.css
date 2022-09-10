@@ -189,7 +189,6 @@ html {
   /* Prevent container content breaking on smaller width devices */
   min-width: 40rem;
   max-width: 60rem;
-  min-height: auto;
 }
 
 /* LEFT SIDE OF CONTAINER */
@@ -274,4 +273,37 @@ html {
 
 .title-color {
   color: #dc3545;
+}
+
+/* 4rem/40px margin-bottom */
+@media (max-width: 575px) {
+  .item-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 47rem;
+    /* margin: 0 auto; */
+  }
+
+  .img-container {
+    align-items: center;
+    text-align: center;
+    padding: 0rem 0rem 0rem 1rem;
+  }
+
+  button.btn-order {
+    width: 100%;
+  }
+}
+
+@media (max-width: 475px) {
+  .item-container {
+    min-width: 30rem;
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .item-container {
+    max-width: 10rem;
+  }
 }

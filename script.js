@@ -4,14 +4,8 @@ event.preventDefault();
 Add the above code to all click events to PREVENT FORM SUBMISSION, This will allow us to keep the page going without refreshing
 */
 
-//TODO: Move wings, sides, desserts to front page
-//TODO: Change HTML 'starting at $12.99' to show the correct price
-//TODO: Fix total price to 2 decimal points
-/*TODO: Create a checkout button on navbar
-      --Add eventListener click on this button, this will start iterating through all object array information to CREATE a recipt.
-      --Place this at the BOTTOM of the 
-*/
-//TODO: Fix order total to always have 2 decimal places (use .toFixed)
+//TODO: Decrease font-size of submission page title -> 'Order Submitted Successfully' to a lower font-size for mobile width.
+//TODO: Decrease font-size of 'Add to Order' Button for mobile width.
 
 // ALL FORMS
 const pepperoniPizzaForm = document.getElementById("pepperoniPizzaForm");
@@ -32,8 +26,7 @@ const chickenTenderSideForm = document.getElementById("chickenTenderSideForm");
 const garlicBreadSideForm = document.getElementById("garlicBreadSideForm");
 const cookieDessertForm = document.getElementById("cookieDessertForm");
 const browniesDessertForm = document.getElementById("browniesDessertForm");
-
-const global_reset = document.getElementById("global_reset"); //THIS WILL BE OUR GLOBAL RESET WHEN USER WANTS TO PLACE ANOTHER ORDER
+const global_reset = document.getElementById("global_reset"); //NEW ORDER RESET ALL CHANGED DATA
 
 // ALL BUTTONS
 const btnPepperoniPizza = document.querySelector(".form__btn--pepperoni-pizza");
