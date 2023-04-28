@@ -302,8 +302,8 @@ btnPepperoniPizza.addEventListener("click", function (event) {
   const userSize = pepperoniPizzaForm.pepperoni_size.value;
   const userQuantity = pepperoniPizzaForm.pepperoni_quantity.value;
 
-  // If user input is valid, then PUSH order details to object 'orders'
   if (isOrderValid(userCrust, userSize, userQuantity, "")) {
+    // If user input is valid, then PUSH order details to object 'orders'
     console.log(`Order received! ${userQuantity} ${userSize} ${userCrust} pepperoni pizza(s) have been ordered.`); //Add this
 
     // Calculates price of item and total price
